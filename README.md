@@ -1,6 +1,6 @@
 ## StockWatcher
 
-## 一个简单实用的股票看盘工具，windows 任务栏工具。
+## 一个简单实用的股票看盘工具，windows 任务栏工具，原作者@mrhuo。
 
 ## 预览
 |Preview|Preview|Preview|
