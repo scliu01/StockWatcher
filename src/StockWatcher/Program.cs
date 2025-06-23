@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace StockWatcher
 {
@@ -14,7 +9,7 @@ namespace StockWatcher
         [STAThread]
         public static void Main(string[] args)
         {
-            Console.WriteLine($"Windows任务栏工具");
+            Console.WriteLine($"Windows 任务栏工具");
             Console.WriteLine($"Email：admin@mruo.com");
             Console.WriteLine();
 
