@@ -1,0 +1,17 @@
+C:\Users\123\Desktop\gitee\StockWatcher\src\StockWatcher\bin\Debug\bat\install.bat
+C:\Users\123\Desktop\gitee\StockWatcher\src\StockWatcher\bin\Debug\bat\uninstall.bat
+C:\Users\123\Desktop\gitee\StockWatcher\src\StockWatcher\bin\Debug\StockWatcher.exe
+C:\Users\123\Desktop\gitee\StockWatcher\src\StockWatcher\bin\Debug\StockWatcher.pdb
+C:\Users\123\Desktop\gitee\StockWatcher\src\StockWatcher\bin\Debug\CSDeskBand.dll
+C:\Users\123\Desktop\gitee\StockWatcher\src\StockWatcher\bin\Debug\NPinyin.dll
+C:\Users\123\Desktop\gitee\StockWatcher\src\StockWatcher\bin\Debug\CSDeskBand.pdb
+C:\Users\123\Desktop\gitee\StockWatcher\src\StockWatcher\bin\Debug\CSDeskBand.xml
+C:\Users\123\Desktop\gitee\StockWatcher\src\StockWatcher\obj\Debug\StockWatcher.csproj.AssemblyReference.cache
+C:\Users\123\Desktop\gitee\StockWatcher\src\StockWatcher\obj\Debug\StockWatcher.frmSetting.resources
+C:\Users\123\Desktop\gitee\StockWatcher\src\StockWatcher\obj\Debug\StockWatcher.Properties.Resources.resources
+C:\Users\123\Desktop\gitee\StockWatcher\src\StockWatcher\obj\Debug\StockWatcher.StockPreviewControl.resources
+C:\Users\123\Desktop\gitee\StockWatcher\src\StockWatcher\obj\Debug\StockWatcher.csproj.GenerateResource.cache
+C:\Users\123\Desktop\gitee\StockWatcher\src\StockWatcher\obj\Debug\StockWatcher.csproj.CoreCompileInputs.cache
+C:\Users\123\Desktop\gitee\StockWatcher\src\StockWatcher\obj\Debug\StockWat.DF85FE19.Up2Date
+C:\Users\123\Desktop\gitee\StockWatcher\src\StockWatcher\obj\Debug\StockWatcher.exe
+C:\Users\123\Desktop\gitee\StockWatcher\src\StockWatcher\obj\Debug\StockWatcher.pdb
