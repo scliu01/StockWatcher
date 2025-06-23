@@ -1,0 +1,770 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CSDeskBand</name>
+    </assembly>
+    <members>
+        <member name="T:CSDeskBand.CSDeskBandImpl">
+            <summary>
+            Default implementation for icsdeskband
+            </summary>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandImpl.#ctor(CSDeskBand.IDeskBandProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CSDeskBand.CSDeskBandImpl"/> class
+            with the handle to the window and the options.
+            </summary>
+        </member>
+        <member name="E:CSDeskBand.CSDeskBandImpl.Closed">
+            <summary>
+            Occurs when the deskband is closed.
+            </summary>
+        </member>
+        <member name="P:CSDeskBand.CSDeskBandImpl.Options">
+            <summary>
+            Gets the <see cref="T:CSDeskBand.CSDeskBandOptions"/>.
+            </summary>
+        </member>
+        <member name="P:CSDeskBand.CSDeskBandImpl.TaskbarInfo">
+            <summary>
+            Gets the <see cref="P:CSDeskBand.CSDeskBandImpl.TaskbarInfo"/>.
+            </summary>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandImpl.GetWindow(System.IntPtr@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandImpl.ContextSensitiveHelp(System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandImpl.ShowDW(System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandImpl.CloseDW(System.UInt32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandImpl.ResizeBorderDW(CSDeskBand.Interop.RECT,System.IntPtr,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandImpl.GetBandInfo(System.UInt32,CSDeskBand.Interop.DESKBANDINFO.DBIF,CSDeskBand.Interop.DESKBANDINFO@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandImpl.CanRenderComposited(System.Boolean@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandImpl.SetCompositionState(System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandImpl.GetCompositionState(System.Boolean@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandImpl.SetSite(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandImpl.GetSite(System.Guid@,System.IntPtr@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandImpl.QueryContextMenu(System.IntPtr,System.UInt32,System.UInt32,System.UInt32,CSDeskBand.Interop.QueryContextMenuFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandImpl.InvokeCommand(System.IntPtr)">
+            <inheritdoc/>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandImpl.GetCommandString(System.UInt32@,System.UInt32,System.UInt32@,System.String@,System.UInt32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandImpl.HandleMenuMsg(System.UInt32,System.IntPtr,System.IntPtr)">
+            <inheritdoc/>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandImpl.HandleMenuMsg2(System.UInt32,System.IntPtr,System.IntPtr,System.IntPtr@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandImpl.GetClassID(System.Guid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandImpl.GetSizeMax(System.UInt64@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandImpl.IsDirty">
+            <inheritdoc/>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandImpl.Load(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandImpl.Save(System.IntPtr,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandImpl.CloseDeskBand">
+            <summary>
+            Closes the deskband.
+            </summary>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandImpl.UIActivateIO(System.Int32,CSDeskBand.Interop.MSG@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandImpl.HasFocusIO">
+            <inheritdoc/>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandImpl.TranslateAcceleratorIO(CSDeskBand.Interop.MSG@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandImpl.UpdateFocus(System.Boolean)">
+            <summary>
+            Updates the focus on the deskband. Explorer will call <see cref="M:CSDeskBand.CSDeskBandImpl.UIActivateIO(System.Int32,CSDeskBand.Interop.MSG@)"/> for example if tabbing when the taskbar is focused. 
+            But if focus is acquired without in other ways, then explorer isn't aware of it and <see cref="M:CSDeskBand.Interop.IInputObjectSite.OnFocusChangeIS(System.Object,System.Int32)"/> needs to be called.
+            </summary>
+            <param name="focused">True if focused.</param>
+        </member>
+        <member name="T:CSDeskBand.ContextMenu.DeskBandMenuItem">
+            <summary>
+            Base class for deskband menu items.
+            </summary>
+        </member>
+        <member name="M:CSDeskBand.ContextMenu.DeskBandMenuItem.AddToMenu(System.IntPtr,System.UInt32,System.UInt32@,System.Collections.Generic.Dictionary{System.UInt32,CSDeskBand.ContextMenu.DeskBandMenuAction})">
+            <summary>
+            Add this item to a menu.
+            </summary>
+            <param name="menu">The menu to add items to.</param>
+            <param name="itemPosition">The position of the item to insert into the menu.</param>
+            <param name="itemId">Unique id of the menu item. Should be incremented if used.</param>
+            <param name="callbacks">Dictionary of callbacks assigned to a <paramref name="itemId"/>.</param>
+        </member>
+        <member name="T:CSDeskBand.ContextMenu.DeskBandMenuSeparator">
+            <summary>
+            A context menu seperator.
+            </summary>
+        </member>
+        <member name="M:CSDeskBand.ContextMenu.DeskBandMenuSeparator.AddToMenu(System.IntPtr,System.UInt32,System.UInt32@,System.Collections.Generic.Dictionary{System.UInt32,CSDeskBand.ContextMenu.DeskBandMenuAction})">
+            <inheritdoc/>
+        </member>
+        <member name="T:CSDeskBand.ContextMenu.DeskBandMenuAction">
+            <summary>
+            A context menu item that can be clicked.
+            </summary>
+        </member>
+        <member name="M:CSDeskBand.ContextMenu.DeskBandMenuAction.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CSDeskBand.ContextMenu.DeskBandMenuAction"/> class
+            with its display text.
+            </summary>
+            <param name="text">The text that is shown for this item in the context menu.</param>
+        </member>
+        <member name="E:CSDeskBand.ContextMenu.DeskBandMenuAction.Clicked">
+            <summary>
+            Occurs when the menu item has been clicked.
+            </summary>
+        </member>
+        <member name="P:CSDeskBand.ContextMenu.DeskBandMenuAction.Checked">
+            <summary>
+            Gets or sets a value indicating whether there is a checkmark next to the menu item.
+            </summary>
+            <value>
+            <see langword="true"/> if the menu should have a checkmark. <see langword="false"/> if there should be no checkmark.
+            The default value is <see langword="false"/>.
+            </value>
+        </member>
+        <member name="P:CSDeskBand.ContextMenu.DeskBandMenuAction.Enabled">
+            <summary>
+            Gets or sets a value indicating whether the menu item is enabled.
+            </summary>
+            <value>
+            <see langword="true"/> if the menu item can be interacted with. <see langword="false"/> to disable interactions.
+            The default value is <see langword="true"/>.
+            </value>
+        </member>
+        <member name="P:CSDeskBand.ContextMenu.DeskBandMenuAction.Text">
+            <summary>
+            Gets or sets the text shown for this item in the context menu.
+            </summary>
+            <value>
+            The text that will be displayed for this item in the context menu.
+            </value>
+        </member>
+        <member name="M:CSDeskBand.ContextMenu.DeskBandMenuAction.DoAction">
+            <summary>
+            Performs the click action for this item.
+            </summary>
+        </member>
+        <member name="M:CSDeskBand.ContextMenu.DeskBandMenuAction.AddToMenu(System.IntPtr,System.UInt32,System.UInt32@,System.Collections.Generic.Dictionary{System.UInt32,CSDeskBand.ContextMenu.DeskBandMenuAction})">
+            <inheritdoc/>
+        </member>
+        <member name="T:CSDeskBand.ContextMenu.DeskBandMenu">
+            <summary>
+            A sub menu item that can contain other <see cref="T:CSDeskBand.ContextMenu.DeskBandMenuItem"/>.
+            </summary>
+        </member>
+        <member name="M:CSDeskBand.ContextMenu.DeskBandMenu.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CSDeskBand.ContextMenu.DeskBandMenu"/> class
+            with the display text.
+            </summary>
+            <param name="text">The text displayed for this item in the context menu.</param>
+        </member>
+        <member name="M:CSDeskBand.ContextMenu.DeskBandMenu.#ctor(System.String,System.Collections.Generic.IEnumerable{CSDeskBand.ContextMenu.DeskBandMenuItem})">
+            <summary>
+            Initializes a new instance of the <see cref="T:CSDeskBand.ContextMenu.DeskBandMenu"/> class
+            with a display text and a list of submenu items.
+            </summary>
+            <param name="text">The text displayed for this item in the context menu.</param>
+            <param name="items">A <see cref="T:System.Collections.Generic.IEnumerable`1"/> of <see cref="T:CSDeskBand.ContextMenu.DeskBandMenuItem"/> that will appear in this submenu.</param>
+        </member>
+        <member name="M:CSDeskBand.ContextMenu.DeskBandMenu.Finalize">
+            <summary>
+            Finalizes an instance of the <see cref="T:CSDeskBand.ContextMenu.DeskBandMenu"/> class.
+            Frees up resoruces associated with the menu.
+            </summary>
+        </member>
+        <member name="P:CSDeskBand.ContextMenu.DeskBandMenu.Items">
+            <summary>
+            Gets the collection of <see cref="T:CSDeskBand.ContextMenu.DeskBandMenuItem"/> in the menu.
+            </summary>
+        </member>
+        <member name="P:CSDeskBand.ContextMenu.DeskBandMenu.Enabled">
+            <summary>
+            Gets or sets a value indicating whether the menu item is enabled.
+            </summary>
+            <value>
+            <see langword="true"/> if the menu item can be interacted with. <see langword="false"/> to disable interactions.
+            The default value is <see langword="true"/>;
+            </value>
+        </member>
+        <member name="P:CSDeskBand.ContextMenu.DeskBandMenu.Text">
+            <summary>
+            Gets or sets the text shown in the menu item.
+            </summary>
+            <value>
+            The text that will be displayed for this menu item.
+            </value>
+        </member>
+        <member name="M:CSDeskBand.ContextMenu.DeskBandMenu.AddToMenu(System.IntPtr,System.UInt32,System.UInt32@,System.Collections.Generic.Dictionary{System.UInt32,CSDeskBand.ContextMenu.DeskBandMenuAction})">
+            <inheritdoc/>
+        </member>
+        <member name="T:CSDeskBand.CSDeskBandRegistrationAttribute">
+            <summary>
+            Specifies registration configuration for a deskband.
+            </summary>
+        </member>
+        <member name="P:CSDeskBand.CSDeskBandRegistrationAttribute.Name">
+            <summary>
+            Gets or sets the name of the deskband in the toolbar menu.
+            </summary>
+            <value>
+            The name is used to select the deskband from the toolbars menu.
+            </value>
+        </member>
+        <member name="P:CSDeskBand.CSDeskBandRegistrationAttribute.ShowDeskBand">
+            <summary>
+            Gets or sets a value indicating whether to automatically show the deskband after registration.
+            </summary>
+            <value>
+            <see langword="true"/> if the deskband should be automatically shown after registration; <see langword="false"/> otherwise.
+            </value>
+        </member>
+        <member name="T:CSDeskBand.CSDeskBandOptions">
+            <summary>
+            Options to configure the deskband
+            </summary>
+        </member>
+        <member name="F:CSDeskBand.CSDeskBandOptions.TaskbarHorizontalHeightLarge">
+            <summary>
+            Height for a default horizontal taskbar.
+            </summary>
+        </member>
+        <member name="F:CSDeskBand.CSDeskBandOptions.TaskbarHorizontalHeightSmall">
+            <summary>
+            Height for a default horizontal taskbar with small icons.
+            </summary>
+        </member>
+        <member name="F:CSDeskBand.CSDeskBandOptions.TaskbarVerticalWidth">
+            <summary>
+            Width for a default vertical taskbar. There is no small vertical taskbar.
+            </summary>
+        </member>
+        <member name="F:CSDeskBand.CSDeskBandOptions.NoLimit">
+            <summary>
+            Value that represents no limit for deskband size.
+            </summary>
+            <seealso cref="P:CSDeskBand.CSDeskBandOptions.MaxHorizontalHeight"/>
+            <seealso cref="P:CSDeskBand.CSDeskBandOptions.MaxVerticalWidth"/>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandOptions.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:CSDeskBand.CSDeskBandOptions"/> class.
+            </summary>
+        </member>
+        <member name="E:CSDeskBand.CSDeskBandOptions.PropertyChanged">
+            <summary>
+            Occurs when a property has change.
+            </summary>
+        </member>
+        <member name="P:CSDeskBand.CSDeskBandOptions.HeightCanChange">
+            <summary>
+            Gets or sets a value indicating whether the height of the horizontal deskband is allowed to change.
+            <para/>
+            Or for a deskband in the vertical orientation, if the width can change.
+            Works alongside with the property <see cref="P:CSDeskBand.CSDeskBandOptions.HeightIncrement"/>.
+            </summary>
+            <value>
+            <see langword="true"/> if the height / width of the deskband can be changed. <see langword="false"/> to prevent changes.
+            The default value is <see langword="true"/>.
+            </value>
+        </member>
+        <member name="P:CSDeskBand.CSDeskBandOptions.HeightIncrement">
+            <summary>
+            Gets or sets the height step size of a horizontal deskband when it is being resized.
+            For a deskband in the vertical orientation, it will be the step size of the width.
+            <para/>
+            The deskband will only be resized to multiples of this value.
+            </summary>
+            <example>
+            If increment is 50, then the height of the deskband can only be resized to 50, 100 ...
+            </example>
+            <value>
+            The step size for resizing. This value is only used if <see cref="P:CSDeskBand.CSDeskBandOptions.HeightCanChange"/> is true. If the value is less than 0, the height / width can be any size.
+            The default value is 1.
+            </value>
+        </member>
+        <member name="P:CSDeskBand.CSDeskBandOptions.IsFixed">
+            <summary>
+            Gets or sets a value indicating whether the deskband has a fixed position and size.
+            </summary>
+            <value>
+            <see langword="true"/> if the deskband is fixed. <see langword="false"/> if the deskband can be adjusted.
+            The default value is <see langword="false"/>.
+            </value>
+        </member>
+        <member name="P:CSDeskBand.CSDeskBandOptions.ShowTitle">
+            <summary>
+            Gets or sets a value indicating whether the value of <see cref="P:CSDeskBand.CSDeskBandOptions.Title"/> is shown next to the deskband.
+            </summary>
+            <value>
+            <see langword="true"/> if the title should be shown. <see langword="false"/> if the title is hidden.
+            The default value is <see langword="false"/>.
+            </value>
+        </member>
+        <member name="P:CSDeskBand.CSDeskBandOptions.Title">
+            <summary>
+            Gets or sets the title of the deskband. This will be shown if <see cref="P:CSDeskBand.CSDeskBandOptions.ShowTitle"/> is <see langword="true"/>.
+            </summary>
+            <value>
+            The title to display. If the title is null, it will be converted to an empty string.
+            The default value is an empty string.
+            </value>
+        </member>
+        <member name="P:CSDeskBand.CSDeskBandOptions.MinVerticalSize">
+            <summary>
+            Gets or sets the minimum <see cref="T:CSDeskBand.DeskBandSize"/> of the deskband in the vertical orientation.
+            </summary>
+            <seealso cref="T:CSDeskBand.TaskbarOrientation"/>
+            <value>
+            The default value is <see cref="F:CSDeskBand.CSDeskBandOptions.NoLimit"/> for the width and height.
+            </value>
+        </member>
+        <member name="P:CSDeskBand.CSDeskBandOptions.MaxVerticalWidth">
+            <summary>
+            Gets or sets the maximum width of the deskband in the vertical orientation.
+            </summary>
+            <remarks>
+            The maximum height will have to be addressed in your code as there is no limit to the height of the deskband when vertical.
+            </remarks>
+            <seealso cref="T:CSDeskBand.TaskbarOrientation"/>
+            <value>
+            The default value is <see cref="F:CSDeskBand.CSDeskBandOptions.NoLimit"/>.
+            </value>
+        </member>
+        <member name="P:CSDeskBand.CSDeskBandOptions.VerticalSize">
+            <summary>
+            Gets or sets the ideal <see cref="T:CSDeskBand.DeskBandSize"/> of the deskband in the vertical orientation.
+            There is no guarantee that the deskband will be this size.
+            </summary>
+            <seealso cref="T:CSDeskBand.TaskbarOrientation"/>
+            <value>
+            The default value is <see cref="F:CSDeskBand.CSDeskBandOptions.TaskbarVerticalWidth"/> for the width and 200 for the height.
+            </value>
+        </member>
+        <member name="P:CSDeskBand.CSDeskBandOptions.MinHorizontalSize">
+            <summary>
+            Gets or sets the minimum <see cref="T:CSDeskBand.DeskBandSize"/> of the deskband in the horizontal orientation.
+            </summary>
+            <seealso cref="T:CSDeskBand.TaskbarOrientation"/>
+            <value>
+            The default value is <see cref="F:CSDeskBand.CSDeskBandOptions.NoLimit"/>.
+            </value>
+        </member>
+        <member name="P:CSDeskBand.CSDeskBandOptions.MaxHorizontalHeight">
+            <summary>
+            Gets or sets the maximum height of the deskband in the horizontal orientation.
+            </summary>
+            <remarks>
+            The maximum width will have to be addressed in your code as there is no limit to the width of the deskband when horizontal.
+            </remarks>
+            <seealso cref="T:CSDeskBand.TaskbarOrientation"/>
+            <value>
+            The default value is <see cref="F:CSDeskBand.CSDeskBandOptions.NoLimit"/>.
+            </value>
+        </member>
+        <member name="P:CSDeskBand.CSDeskBandOptions.HorizontalSize">
+            <summary>
+            Gets or sets the ideal <see cref="T:CSDeskBand.DeskBandSize"/> of the deskband in the horizontal orientation.
+            There is no guarantee that the deskband will be this size.
+            </summary>
+            <seealso cref="T:CSDeskBand.TaskbarOrientation"/>
+            <value>
+            The default value is 200 for the width and <see cref="F:CSDeskBand.CSDeskBandOptions.TaskbarHorizontalHeightLarge"/> for the height.
+            </value>
+        </member>
+        <member name="P:CSDeskBand.CSDeskBandOptions.ContextMenuItems">
+            <summary>
+            Gets or sets the collection of <see cref="T:CSDeskBand.ContextMenu.DeskBandMenuItem"/> the comprise the deskbands context menu.
+            </summary>
+            <value>
+            A list of <see cref="T:CSDeskBand.ContextMenu.DeskBandMenuItem"/> for the context menu. An empty collection indicates no context menu.
+            </value>
+            <remarks>
+            These context menu items are in addition of the default ones that windows provides.
+            The items will appear in their enumerated order.
+            </remarks>
+        </member>
+        <member name="T:CSDeskBand.CSDeskBandWin">
+            <summary>
+            Winforms implementation of <see cref="T:CSDeskBand.ICSDeskBand"/>.
+            The deskband should also have these attributes <see cref="T:System.Runtime.InteropServices.ComVisibleAttribute"/>, <see cref="T:System.Runtime.InteropServices.GuidAttribute"/>, <see cref="T:CSDeskBand.CSDeskBandRegistrationAttribute"/>.
+            </summary>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandWin.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:CSDeskBand.CSDeskBandWin"/> class.
+            </summary>
+        </member>
+        <member name="P:CSDeskBand.CSDeskBandWin.TaskbarInfo">
+            <summary>
+            Gets the taskbar information
+            </summary>
+        </member>
+        <member name="P:CSDeskBand.CSDeskBandWin.Control">
+            <summary>
+            Gets the main control for the deskband.
+            </summary>
+        </member>
+        <member name="P:CSDeskBand.CSDeskBandWin.Options">
+            <summary>
+            Gets the options for this deskband.
+            </summary>
+            <seealso cref="T:CSDeskBand.CSDeskBandOptions"/>
+        </member>
+        <member name="P:CSDeskBand.CSDeskBandWin.Handle">
+            <summary>
+            Gets the handle
+            </summary>
+        </member>
+        <member name="P:CSDeskBand.CSDeskBandWin.Guid">
+            <summary>
+            Gets the deskband guid
+            </summary>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandWin.UpdateFocus(System.Boolean)">
+            <summary>
+            Updates the focus on this deskband.
+            </summary>
+            <param name="focused"><see langword="true"/> if focused.</param>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandWin.DeskbandOnClosed">
+            <summary>
+            Handle closing of the deskband.
+            </summary>
+        </member>
+        <member name="T:CSDeskBand.CSDeskBandWpf">
+            <summary>
+            Wpf implementation of <see cref="T:CSDeskBand.ICSDeskBand"/>
+            The deskband should also have these attributes <see cref="T:System.Runtime.InteropServices.ComVisibleAttribute"/>, <see cref="T:System.Runtime.InteropServices.GuidAttribute"/>, <see cref="T:CSDeskBand.CSDeskBandRegistrationAttribute"/>.
+            </summary>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandWpf.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:CSDeskBand.CSDeskBandWpf"/> class.
+            </summary>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandWpf.HwndSourceHook(System.IntPtr,System.Int32,System.IntPtr,System.IntPtr,System.Boolean@)">
+            <summary>
+            The <see cref="T:System.Windows.Interop.HwndSourceHook"/>. for <see cref="P:CSDeskBand.CSDeskBandWpf.HwndSource"/>.
+            </summary>
+            <param name="hwnd"></param>
+            <param name="msg"></param>
+            <param name="wparam"></param>
+            <param name="lparam"></param>
+            <param name="handled"></param>
+            <returns></returns>
+        </member>
+        <member name="P:CSDeskBand.CSDeskBandWpf.HwndSource">
+            <summary>
+            Gets the <see cref="T:System.Windows.Interop.HwndSource"/> that hosts the wpf content.
+            </summary>
+        </member>
+        <member name="P:CSDeskBand.CSDeskBandWpf.TaskbarInfo">
+            <summary>
+            Gets the taskbar information
+            </summary>
+        </member>
+        <member name="P:CSDeskBand.CSDeskBandWpf.UIElement">
+            <summary>
+            Gets main UI element for the deskband.
+            </summary>
+        </member>
+        <member name="P:CSDeskBand.CSDeskBandWpf.Options">
+            <summary>
+            Gets the options for this deskband.
+            </summary>
+            <seealso cref="T:CSDeskBand.CSDeskBandOptions"/>
+        </member>
+        <member name="P:CSDeskBand.CSDeskBandWpf.Handle">
+            <summary>
+            Gets the handle
+            </summary>
+        </member>
+        <member name="P:CSDeskBand.CSDeskBandWpf.Guid">
+            <summary>
+            Gets the deskband guid
+            </summary>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandWpf.UpdateFocus(System.Boolean)">
+            <summary>
+            Updates the focus on this deskband.
+            </summary>
+            <param name="focused"><see langword="true"/> if focused.</param>
+        </member>
+        <member name="M:CSDeskBand.CSDeskBandWpf.DeskbandOnClosed">
+            <summary>
+            Handle closing of the deskband.
+            </summary>
+        </member>
+        <member name="T:CSDeskBand.ICSDeskBand">
+            <summary>
+            Deskband Interface
+            </summary>
+        </member>
+        <member name="T:CSDeskBand.RegistrationHelper">
+            <summary>
+            Helper class to register deskband.
+            </summary>
+        </member>
+        <member name="M:CSDeskBand.RegistrationHelper.Register(System.Type)">
+            <summary>
+            Register the deskband.
+            </summary>
+            <param name="t">Type of the deskband.</param>
+        </member>
+        <member name="M:CSDeskBand.RegistrationHelper.Unregister(System.Type)">
+            <summary>
+            Unregister the deskband.
+            </summary>
+            <param name="t">Type of the deskband.</param>
+        </member>
+        <member name="M:CSDeskBand.RegistrationHelper.GetToolbarName(System.Type)">
+            <summary>
+            Gets the name of the toolbar for the deskband.
+            </summary>
+            <param name="t">Type of the deskband.</param>
+            <returns>The name of the toolbar.</returns>
+        </member>
+        <member name="M:CSDeskBand.RegistrationHelper.GetToolbarRequestToShow(System.Type)">
+            <summary>
+            Gets if the deskband should be shown after registration.
+            </summary>
+            <param name="t">Type of the deskband.</param>
+            <returns>The value if it should be shown.</returns>
+        </member>
+        <member name="T:CSDeskBand.DeskBandSize">
+            <summary>
+            Size class that is independent of winforms or wpf.
+            </summary>
+        </member>
+        <member name="M:CSDeskBand.DeskBandSize.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CSDeskBand.DeskBandSize"/> class.
+            </summary>
+            <param name="width">The <see cref="P:CSDeskBand.DeskBandSize.Width"/> component.</param>
+            <param name="height">The <see cref="P:CSDeskBand.DeskBandSize.Height"/> component.</param>
+        </member>
+        <member name="E:CSDeskBand.DeskBandSize.PropertyChanged">
+            <inheritdoc/>
+        </member>
+        <member name="P:CSDeskBand.DeskBandSize.Width">
+            <summary>
+            Gets or sets the width component of the size.
+            </summary>
+        </member>
+        <member name="P:CSDeskBand.DeskBandSize.Height">
+            <summary>
+            Gets or sets the height component of the size.
+            </summary>
+        </member>
+        <member name="M:CSDeskBand.DeskBandSize.op_Implicit(System.Windows.Size)~CSDeskBand.DeskBandSize">
+            <summary>
+            Converts from <see cref="T:System.Windows.Size"/> to <see cref="T:CSDeskBand.DeskBandSize"/>.
+            </summary>
+            <param name="size">The <see cref="T:System.Windows.Size"/> to convert.</param>
+        </member>
+        <member name="M:CSDeskBand.DeskBandSize.op_Implicit(CSDeskBand.DeskBandSize)~System.Windows.Size">
+            <summary>
+            Converts from <see cref="T:CSDeskBand.DeskBandSize"/> to <see cref="T:System.Windows.Size"/>.
+            </summary>
+            <param name="size">The <see cref="T:CSDeskBand.DeskBandSize"/> to convert.</param>
+        </member>
+        <member name="M:CSDeskBand.DeskBandSize.op_Implicit(System.Drawing.Size)~CSDeskBand.DeskBandSize">
+            <summary>
+            Converts from <see cref="T:System.Drawing.Size"/> to <see cref="T:CSDeskBand.DeskBandSize"/>.
+            </summary>
+            <param name="size">The <see cref="T:System.Drawing.Size"/> to convert.</param>
+        </member>
+        <member name="M:CSDeskBand.DeskBandSize.op_Implicit(CSDeskBand.DeskBandSize)~System.Drawing.Size">
+            <summary>
+            Converts from <see cref="T:CSDeskBand.DeskBandSize"/> to <see cref="T:System.Drawing.Size"/>.
+            </summary>
+            <param name="size">The <see cref="T:CSDeskBand.DeskBandSize"/> to convert.</param>
+        </member>
+        <member name="T:CSDeskBand.TaskbarOrientation">
+            <summary>
+            The orientation of the taskbar.
+            </summary>
+        </member>
+        <member name="F:CSDeskBand.TaskbarOrientation.Vertical">
+            <summary>
+            Vertical if the taskbar is either on top or bottom.
+            </summary>
+        </member>
+        <member name="F:CSDeskBand.TaskbarOrientation.Horizontal">
+            <summary>
+            Horizontal if the taskbar is either on the left or right.
+            </summary>
+        </member>
+        <member name="T:CSDeskBand.Edge">
+            <summary>
+            The edge where the taskbar is located.
+            </summary>
+        </member>
+        <member name="F:CSDeskBand.Edge.Left">
+            <summary>
+            Taskbar is on the left edge.
+            </summary>
+        </member>
+        <member name="F:CSDeskBand.Edge.Top">
+            <summary>
+            Taskbar is on the top edge.
+            </summary>
+        </member>
+        <member name="F:CSDeskBand.Edge.Right">
+            <summary>
+            Taskbar is on the right edge.
+            </summary>
+        </member>
+        <member name="F:CSDeskBand.Edge.Bottom">
+            <summary>
+            Taskbar is on the bottom edge.
+            </summary>
+        </member>
+        <member name="T:CSDeskBand.TaskbarInfo">
+            <summary>
+            Provides information about the main taskbar.
+            </summary>
+        </member>
+        <member name="M:CSDeskBand.TaskbarInfo.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:CSDeskBand.TaskbarInfo"/> class.
+            </summary>
+        </member>
+        <member name="E:CSDeskBand.TaskbarInfo.TaskbarOrientationChanged">
+            <summary>
+            Occurs when the orientation of the main taskbar is changed.
+            </summary>
+        </member>
+        <member name="E:CSDeskBand.TaskbarInfo.TaskbarEdgeChanged">
+            <summary>
+            Occurs when the edge of the main taskbar is changed.
+            </summary>
+        </member>
+        <member name="E:CSDeskBand.TaskbarInfo.TaskbarSizeChanged">
+            <summary>
+            Occurs when the size of the taskbar is changed.
+            </summary>
+        </member>
+        <member name="P:CSDeskBand.TaskbarInfo.Orientation">
+            <summary>
+            Gets the current <see cref="T:CSDeskBand.TaskbarOrientation"/> of the main taskbar.
+            </summary>
+            <value>
+            The current orientation.
+            </value>
+        </member>
+        <member name="P:CSDeskBand.TaskbarInfo.Edge">
+            <summary>
+            Gets the current <see cref="T:CSDeskBand.Edge"/> of the main taskbar.
+            </summary>
+            <value>
+            The current edge.
+            </value>
+        </member>
+        <member name="P:CSDeskBand.TaskbarInfo.Size">
+            <summary>
+            Gets the current <see cref="T:CSDeskBand.DeskBandSize"/> of the main taskbar.
+            </summary>
+            <value>
+            The current size.
+            </value>
+        </member>
+        <member name="M:CSDeskBand.TaskbarInfo.UpdateInfo">
+            <summary>
+            Get the latest taskbar information.
+            </summary>
+        </member>
+        <member name="T:CSDeskBand.TaskbarOrientationChangedEventArgs">
+            <summary>
+            Provides data for a taskbar orientation change event.
+            </summary>
+        </member>
+        <member name="M:CSDeskBand.TaskbarOrientationChangedEventArgs.#ctor(CSDeskBand.TaskbarOrientation)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CSDeskBand.TaskbarOrientationChangedEventArgs"/> class
+            with the new orientation.
+            </summary>
+            <param name="orientation">The new taskbar orientation.</param>
+        </member>
+        <member name="P:CSDeskBand.TaskbarOrientationChangedEventArgs.Orientation">
+            <summary>
+            Gets the new orientation of the taskbar.
+            </summary>
+        </member>
+        <member name="T:CSDeskBand.TaskbarSizeChangedEventArgs">
+            <summary>
+            Provides data for a taskbar size change event.
+            </summary>
+        </member>
+        <member name="M:CSDeskBand.TaskbarSizeChangedEventArgs.#ctor(CSDeskBand.DeskBandSize)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CSDeskBand.TaskbarSizeChangedEventArgs"/> class
+            with the new size of the taskbar.
+            </summary>
+            <param name="size">The new size of the taskbar.</param>
+        </member>
+        <member name="P:CSDeskBand.TaskbarSizeChangedEventArgs.Size">
+            <summary>
+            Gets the new size of the taskbar.
+            </summary>
+        </member>
+        <member name="T:CSDeskBand.TaskbarEdgeChangedEventArgs">
+            <summary>
+            Provides data for a taskbar edge change event.
+            </summary>
+        </member>
+        <member name="M:CSDeskBand.TaskbarEdgeChangedEventArgs.#ctor(CSDeskBand.Edge)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CSDeskBand.TaskbarEdgeChangedEventArgs"/> class
+            with the new edge.
+            </summary>
+            <param name="edge">The new edge.</param>
+        </member>
+        <member name="P:CSDeskBand.TaskbarEdgeChangedEventArgs.Edge">
+            <summary>
+            Gets the new edge location of the taskbar.
+            </summary>
+        </member>
+    </members>
+</doc>
