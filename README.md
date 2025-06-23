@@ -14,9 +14,9 @@
 
 1、必须安装 .NET framework 4.5.2 或更高版本 [跳转下载](https://dotnet.microsoft.com/zh-cn/download/dotnet-framework/net452)。
 
-2、下载发行版并解压 [StockWatcher](https://github.com/scliu01/StockWatcher/releases) 。
+2、下载发行版并解压StockWatcher。
 
-3、在文件夹中右键 `\StockWatcher-1.1\src\StockWatcher\bin\Debug` 用 **管理员权限** 打开cmd执行：StockWatcher.exe i
+3、在文件夹中右键 `\StockWatcher\src\StockWatcher\bin\Debug` 用 **管理员权限** 打开cmd执行：StockWatcher.exe i
 
 > 注意，一定要管理员权限打开，否则无法安装或卸载。任务栏工具相当于给 `explorer.exe` 进程安装插件，所以需要管理员权限才可操作。安装杀毒软件的话，可能会报无权限操作，允许即可。
 
