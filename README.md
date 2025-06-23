@@ -24,7 +24,7 @@
 
 #### 卸载软件
 
-在文件夹cmd中执行 `StockWatcher.exe u` 用 **管理员权限** 打开，之后关闭窗口即可。
+在文件夹cmd中执行：`StockWatcher.exe u` 用 **管理员权限** 打开，之后关闭窗口即可。
 
 <br>
 
